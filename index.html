@@ -175,12 +175,11 @@
     <main class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 pt-8 lg:pt-16">
         
         <!-- ================= Hero Section (Grid Layout) ================= -->
-        <!-- 修改点：grid-cols-[1fr_480px]，视觉区占大部分，信息区固定宽 -->
         <div class="grid lg:grid-cols-[1fr_480px] gap-12 lg:gap-16 mb-24 items-start">
             
             <!-- 1. Left Column: Visual Bento Grid (Evidence) -->
-            <div class="order-1"> <!-- Mobile: Order 1, Desktop: Order 1 (Left) -->
-                <!-- Mobile Title (Only visible on small screens to provide context before visuals) -->
+            <div class="order-1">
+                <!-- Mobile Title -->
                 <div class="lg:hidden mb-6">
                     <h1 class="text-3xl font-extrabold text-white">Sci-Fi Essentials Pack</h1>
                     <div class="flex items-center gap-2 mt-2 text-sm text-gray-400">
@@ -190,7 +189,6 @@
                 </div>
 
                 <div class="bento-grid">
-                    <!-- Main Feature -->
                     <div class="bento-item main group cursor-pointer">
                         <img src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=800&auto=format&fit=crop" loading="lazy">
                         <div class="absolute top-4 left-4 glass-badge px-3 py-1.5 rounded-full text-xs text-white font-bold border border-white/10 flex items-center gap-2">
@@ -198,17 +196,14 @@
                         </div>
                     </div>
                     
-                    <!-- Side Item -->
                     <div class="bento-item tall group cursor-pointer">
                         <img src="https://images.unsplash.com/photo-1626263468007-a9e0cf83f1ac?q=80&w=600&auto=format&fit=crop" loading="lazy">
                     </div>
 
-                    <!-- Small Item -->
                     <div class="bento-item group cursor-pointer">
                         <img src="https://images.unsplash.com/photo-1535378437327-10f228263370?q=80&w=400&auto=format&fit=crop" loading="lazy">
                     </div>
 
-                    <!-- Bottom Wide -->
                     <div class="bento-item wide group cursor-pointer">
                         <img src="https://images.unsplash.com/photo-1633412802994-5c058f151b66?q=80&w=800&auto=format&fit=crop" loading="lazy">
                         <div class="absolute bottom-4 right-4 glass-badge px-3 py-1.5 rounded-full text-xs text-white flex items-center gap-2 group-hover:bg-meshy-accent group-hover:text-black transition-colors">
@@ -240,19 +235,16 @@
                             </div>
                         </div>
                         
-                        <!-- Social Stats -->
                         <div class="flex gap-4 text-xs text-gray-400">
                             <span class="flex items-center gap-1.5"><i class="fa-regular fa-eye"></i> 1.2k</span>
                             <span class="flex items-center gap-1.5"><i class="fa-regular fa-heart"></i> 342</span>
                         </div>
                     </div>
 
-                    <!-- Description -->
                     <p class="text-gray-300 text-sm leading-relaxed mb-4">
                         A comprehensive kit for prototyping futuristic environments. This collection features high-fidelity hard-surface models including mechs, drones, and structural elements. Optimized for game engines and concept art.
                     </p>
 
-                    <!-- Tags -->
                     <div class="flex flex-wrap gap-2 mb-6">
                         <span class="meshy-tag">#SciFi</span>
                         <span class="meshy-tag">#HardSurface</span>
@@ -262,9 +254,8 @@
                     </div>
                 </div>
 
-                <!-- The "Gift" Module (Embedded in Context) -->
+                <!-- The "Gift" Module -->
                 <div class="bg-meshy-surface border border-meshy-accent/30 p-5 rounded-xl relative overflow-hidden group">
-                    <!-- Dynamic Ribbon -->
                     <div class="absolute top-0 right-0 bg-meshy-accent text-black text-[10px] font-bold px-3 py-1 rounded-bl-lg">
                         INVITE EXCLUSIVE
                     </div>
@@ -286,7 +277,6 @@
                         <span class="text-meshy-accent font-mono" id="promo-code-display">CODE: ...</span>
                     </div>
 
-                    <!-- Main CTA -->
                     <a id="main-cta" href="#" class="w-full bg-meshy-accent hover:bg-meshy-accentHover text-black font-extrabold text-sm py-3.5 rounded-lg transition-all flex items-center justify-center gap-2 group/btn shadow-[0_0_15px_rgba(204,255,0,0.15)] hover:shadow-[0_0_25px_rgba(204,255,0,0.3)]">
                         Register & Claim Gift
                         <i class="fa-solid fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
@@ -315,11 +305,10 @@
             <!-- Asset Grid -->
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 
-                <!-- Asset Card Component -->
+                <!-- Asset 1 -->
                 <div class="asset-card group cursor-pointer">
                     <div class="aspect-square bg-[#111] overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <!-- Hover Overlay -->
                         <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                             <span class="bg-white text-black text-[10px] font-bold px-3 py-1.5 rounded-full scale-90 group-hover:scale-100 transition">View</span>
                         </div>
@@ -330,7 +319,7 @@
                     </div>
                 </div>
 
-                <!-- Repeated Asset Cards -->
+                <!-- Asset 2 -->
                 <div class="asset-card group cursor-pointer">
                     <div class="aspect-square bg-[#111] overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1633412802994-5c058f151b66?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
@@ -341,6 +330,7 @@
                     </div>
                 </div>
 
+                <!-- Asset 3 -->
                 <div class="asset-card group cursor-pointer">
                     <div class="aspect-square bg-[#111] overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
@@ -351,6 +341,7 @@
                     </div>
                 </div>
 
+                <!-- Asset 4 -->
                 <div class="asset-card group cursor-pointer">
                     <div class="aspect-square bg-[#111] overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1535378437327-10f228263370?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
@@ -361,6 +352,7 @@
                     </div>
                 </div>
 
+                <!-- Asset 5 -->
                 <div class="asset-card group cursor-pointer">
                     <div class="aspect-square bg-[#111] overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1626263468007-a9e0cf83f1ac?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
@@ -371,6 +363,7 @@
                     </div>
                 </div>
 
+                <!-- Asset 6 -->
                 <div class="asset-card group cursor-pointer">
                     <div class="aspect-square bg-[#111] overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
@@ -381,6 +374,7 @@
                     </div>
                 </div>
 
+                <!-- Asset 7 -->
                 <div class="asset-card group cursor-pointer">
                     <div class="aspect-square bg-[#111] overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
@@ -392,7 +386,7 @@
                 </div>
 
                 <!-- See More Card -->
-                <div class="asset-card border-dashed bg-transparent border-white/20 flex flex-col items-center justify-center p-4 hover:border-meshy-accent group cursor-pointer">
+                <div class="col-span-2 md:col-span-1 asset-card border-dashed bg-transparent border-white/20 flex flex-col items-center justify-center p-4 hover:border-meshy-accent group cursor-pointer">
                     <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mb-2 group-hover:bg-meshy-accent group-hover:text-black transition">
                         <i class="fa-solid fa-plus"></i>
                     </div>
@@ -400,6 +394,17 @@
                 </div>
 
             </div>
+
+            <!-- [NEW] Bottom CTA Section -->
+            <div class="mt-24 pt-12 border-t border-white/5 text-center">
+                <h4 class="text-2xl lg:text-3xl font-extrabold text-white mb-4">Ready to create your own 3D assets?</h4>
+                <p class="text-gray-400 mb-8 max-w-lg mx-auto text-sm lg:text-base">Join thousands of creators using Meshy to bring their imagination to life with AI.</p>
+                <a id="bottom-cta" href="#" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-200 text-black font-bold py-3.5 px-8 rounded-full transition-transform hover:-translate-y-1 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                    Start Creating for Free
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
         </div>
 
     </main>
@@ -444,7 +449,8 @@
             // 4. 更新所有 CTA 链接
             const targetUrl = `https://app.meshy.ai/register?invite_code=${refCode}`;
             
-            const linkIds = ['nav-cta', 'main-cta', 'mobile-cta'];
+            // 添加 'bottom-cta' 到列表
+            const linkIds = ['nav-cta', 'main-cta', 'mobile-cta', 'bottom-cta'];
             linkIds.forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.href = targetUrl;
