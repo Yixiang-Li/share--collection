@@ -4,29 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#ccff00">
-    <title>Meshy Collection: Sci-Fi Essentials | Invited by yixiangli</title>
+    <title>Claim Your Gift: Sci-Fi Asset Pack | Meshy</title>
 
-    <!-- ================================================================================== -->
-    <!--                          Social Media Preview (OG Tags)                              -->
-    <!-- ================================================================================== -->
-
-    <!-- 1. Twitter (X) Card: 使用大图摘要卡片 -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@MeshyAI">
-    <meta name="twitter:title" content="Sci-Fi Essentials - 3D Collection">
-    <meta name="twitter:description" content="Explore this curated collection of AI-generated 3D assets. Sign up to clone and edit them for free.">
-    <!-- 封面图：建议使用 1200x630 (1.91:1) 的图片 -->
-    <meta name="twitter:image" content="https://cdn.meshy.ai/referral-assets/collection_cover_cdn.png">
-
-    <!-- 2. 通用 Open Graph (Facebook, Discord, LinkedIn, WhatsApp) -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Sci-Fi Essentials - 3D Collection on Meshy">
-    <meta property="og:description" content="Explore 12 high-quality AI 3D models curated by yixiangli.">
-    <meta property="og:url" content="https://yixiang-li.github.io/3d-viewer/collection_share.html">
+    <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="Get this Premium 3D Asset Pack for Free">
+    <meta property="og:description" content="Invited by yixiangli. Join Meshy to claim the 'Sci-Fi Essentials' collection and start creating.">
     <meta property="og:image" content="https://cdn.meshy.ai/referral-assets/collection_cover_cdn.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:site_name" content="Meshy AI">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://cdn.meshy.ai/referral-assets/collection_cover_cdn.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -37,26 +22,22 @@
                 extend: {
                     colors: {
                         meshy: {
-                            bg: '#050505',
-                            card: '#111111',
+                            bg: '#080808',
+                            surface: '#141414',
+                            surfaceHover: '#1f1f1f',
                             accent: '#ccff00',
                             accentHover: '#b3e600',
                             text: '#ffffff',
                             subtext: '#9ca3af',
-                            border: '#222222',
-                            panel: 'rgba(20, 20, 20, 0.85)'
+                            border: '#2a2a2a'
                         }
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        display: ['Clash Display', 'Inter', 'sans-serif'],
                     },
-                    animation: {
-                        'fade-in': 'fadeIn 0.8s ease-out forwards',
-                        'slide-up': 'slideUp 0.8s ease-out forwards',
-                    },
-                    keyframes: {
-                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
-                        slideUp: { '0%': { transform: 'translateY(20px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } }
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #222 1px, transparent 1px), linear-gradient(to bottom, #222 1px, transparent 1px)",
                     }
                 }
             }
@@ -66,450 +47,340 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-        body { background-color: #050505; color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        body { background-color: #080808; color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-        /* ================= 布局系统 (Responsive Layout) ================= */
-        
-        #app-layout {
-            display: flex;
-            flex-direction: column;
-            width: 100vw;
-            min-height: 100vh;
+        /* 背景装饰 */
+        .bg-grid {
+            background-size: 40px 40px;
+            mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+            opacity: 0.15;
         }
 
-        /* Hero Section (首屏):
-           Desktop: 左右分栏 (1.618 : 1)
-           Mobile: 上下堆叠
-        */
-        #hero-section {
+        /* Hero 区域 Bento Grid */
+        .bento-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            min-height: 100vh; 
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 160px); /* Desktop 高度 */
+            gap: 16px;
+            height: 100%;
         }
-
-        @media (min-width: 1024px) {
-            #hero-section {
-                /* 黄金比例左右分栏，左侧更宽以展示震撼视觉 */
-                grid-template-columns: 62% 38%; 
-                height: 100vh;
-                min-height: 700px; /* 防止在超矮屏幕上挤压内容 */
-            }
-        }
-
-        /* 左侧：轮播容器 */
-        #carousel-col {
+        
+        .bento-item {
             position: relative;
-            width: 100%;
-            /* Mobile: 设置为 60vh，类似 4:5 的纵向比例，适合展示单体模型细节，同时露出下方内容引导滑动 */
-            height: 60vh; 
-            background: #000;
+            border-radius: 16px;
             overflow: hidden;
-        }
-        
-        @media (min-width: 1024px) {
-            #carousel-col {
-                height: 100%; /* Desktop: 撑满全屏高度 */
-            }
-        }
-
-        /* 右侧：邀请内容容器 */
-        #content-col {
-            position: relative;
-            z-index: 10;
-            background: #050505;
-            border-top: 1px solid #222;
-            display: flex;
-            flex-direction: column;
-            /* Mobile: 剩下的高度自适应，如果内容多则滚动 */
-        }
-
-        @media (min-width: 1024px) {
-            #content-col {
-                border-top: none;
-                border-left: 1px solid #222;
-                height: 100%;
-            }
-        }
-
-        /* 下方合集列表容器 */
-        #collection-grid-section {
-            background: #050505;
-            padding: 60px 20px;
-            border-top: 1px solid #222;
-            min-height: 100vh;
-        }
-
-        /* ================= 视觉组件 ================= */
-        
-        /* 轮播动画 */
-        .carousel-slide {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 8s ease-out;
-            transform: scale(1.1); /* 缓慢缩放效果 */
-            background-size: cover;
-            background-position: center;
-        }
-        .carousel-slide.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-        
-        /* 电影级遮罩: 底部渐变变黑，保证文字可读性 */
-        .gradient-overlay {
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0) 100%);
-        }
-
-        /* 轮播翻页按钮 */
-        .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 44px;
-            height: 44px;
-            background: rgba(0,0,0,0.3);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            z-index: 30;
-            opacity: 0; /* 默认隐藏，hover容器时显示 */
-        }
-        /* Mobile 端默认显示，Desktop 端 hover 显示 */
-        @media (max-width: 1023px) {
-            .nav-btn { opacity: 1; background: rgba(0,0,0,0.5); }
-        }
-        #carousel-col:hover .nav-btn {
-            opacity: 1;
-        }
-        .nav-btn:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-50%) scale(1.1);
-        }
-        .nav-btn.prev { left: 20px; }
-        .nav-btn.next { right: 20px; }
-
-        /* 模型卡片 */
-        .model-card {
+            border: 1px solid rgba(255,255,255,0.08);
             background: #111;
-            border: 1px solid #222;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
+            transition: all 0.4s ease;
         }
-        .model-card:hover {
-            transform: translateY(-6px);
-            border-color: #444;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+        
+        .bento-item:hover {
+            border-color: rgba(255,255,255,0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
             z-index: 10;
         }
         
-        /* 卡片图片比例: 正方形展示最稳妥 */
-        .model-card-img-wrapper {
-            width: 100%;
-            aspect-ratio: 1/1; 
-            overflow: hidden;
-            background: #1a1a1a;
-        }
-        .model-card img {
+        .bento-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
+            transition: transform 0.7s ease;
         }
-        .model-card:hover img {
+        
+        .bento-item:hover img {
             transform: scale(1.08);
         }
 
-        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+        /* Bento 布局逻辑 */
+        .bento-item.main { grid-column: span 2; grid-row: span 2; } /* 左上大图 */
+        .bento-item.tall { grid-row: span 2; } /* 右侧长图 */
+        .bento-item.wide { grid-column: span 2; } /* 底部宽图 */
+
+        @media (max-width: 1023px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(4, 140px);
+                gap: 10px;
+            }
+            .bento-item.main { grid-column: span 2; grid-row: span 2; }
+            .bento-item.tall { grid-column: span 1; grid-row: span 1; } /* Mobile重置 */
+            .bento-item.wide { grid-column: span 2; }
+        }
+
+        /* 礼品卡样式 */
+        .gift-card-glow {
+            box-shadow: 0 0 40px -10px rgba(204, 255, 0, 0.15);
+            transition: box-shadow 0.3s ease;
+        }
+        .gift-card-glow:hover {
+            box-shadow: 0 0 60px -10px rgba(204, 255, 0, 0.25);
+        }
+
+        /* 资源卡片 */
+        .asset-card {
+            background: #141414;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+        .asset-card:hover {
+            border-color: #444;
+            transform: translateY(-2px);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #080808; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased pb-20">
 
-    <!-- 全局布局 -->
-    <div id="app-layout">
+    <!-- 背景层 -->
+    <div class="fixed inset-0 bg-grid pointer-events-none z-0"></div>
+
+    <!-- 顶部导航 -->
+    <header class="relative z-30 border-b border-white/5 bg-meshy-bg/90 backdrop-blur-md sticky top-0">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-2 text-white font-bold text-xl tracking-tight">
+                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5 9.5 9.75 12 11zm0 2.5l-5-2.5-5 2.5 10 5 10-5-5-2.5-5 2.5z"/></svg>
+                Meshy
+            </div>
+            
+            <!-- Login -->
+            <button class="text-sm font-medium text-gray-400 hover:text-white transition">Sign In</button>
+        </div>
+    </header>
+
+    <main class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 pt-8 lg:pt-16">
         
-        <!-- 上半部分 / 第一屏 -->
-        <section id="hero-section">
+        <!-- ================= Hero Section (左右布局) ================= -->
+        <div class="grid lg:grid-cols-[420px_1fr] xl:grid-cols-[480px_1fr] gap-12 lg:gap-20 mb-24">
             
-            <!-- 左侧: 沉浸式轮播 -->
-            <div id="carousel-col">
-                <!-- 轮播图片 (模拟数据) -->
-                <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=2000&auto=format&fit=crop');"></div>
-                <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1633412802994-5c058f151b66?q=80&w=2000&auto=format&fit=crop');"></div>
-                <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop');"></div>
+            <!-- Left: Context + Gift Card + CTA -->
+            <div class="flex flex-col justify-center order-2 lg:order-1">
                 
-                <!-- 遮罩层 -->
-                <div class="absolute inset-0 gradient-overlay"></div>
-
-                <!-- 导航按钮 (新增) -->
-                <button class="nav-btn prev" id="prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
-                <button class="nav-btn next" id="next-btn"><i class="fa-solid fa-chevron-right"></i></button>
-
-                <!-- 轮播内容 -->
-                <div class="absolute bottom-10 left-6 lg:left-10 z-20 max-w-2xl animate-slide-up pr-6 pointer-events-none">
-                    <div class="flex items-center gap-3 mb-3">
-                        <span class="bg-meshy-accent text-black text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-widest">Featured</span>
-                        <span class="text-gray-300 text-xs font-mono border-l border-gray-600 pl-3">12 Assets</span>
+                <!-- Invited By Tag -->
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="relative">
+                        <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Yi" class="w-10 h-10 rounded-full border border-white/20 bg-black">
+                        <div class="absolute -bottom-0.5 -right-0.5 bg-green-500 w-3 h-3 rounded-full border-2 border-black"></div>
                     </div>
-                    <h2 class="text-4xl lg:text-5xl font-extrabold text-white mb-3 leading-[1.1] tracking-tight">Sci-Fi Essentials Pack</h2>
-                    <p class="text-gray-300 text-sm lg:text-base line-clamp-2 max-w-lg leading-relaxed">
-                        A highly curated selection of hard-surface sci-fi assets generated with Meshy-4. Includes mechs, drones, and environment props ready for your next game project.
-                    </p>
+                    <div class="text-sm">
+                        <span class="text-gray-400 block text-xs uppercase tracking-wider font-bold">Invited by</span>
+                        <span class="text-white font-bold">yixiangli</span>
+                    </div>
                 </div>
 
-                <!-- 轮播指示器 -->
-                <div class="absolute bottom-10 right-6 lg:right-10 flex gap-2 z-20">
-                    <div class="w-8 h-1 bg-white rounded-full opacity-100 transition-all indicator"></div>
-                    <div class="w-8 h-1 bg-white rounded-full opacity-30 transition-all indicator"></div>
-                    <div class="w-8 h-1 bg-white rounded-full opacity-30 transition-all indicator"></div>
-                </div>
-            </div>
+                <!-- Title & Desc -->
+                <h1 class="text-4xl lg:text-5xl font-extrabold text-white leading-[1.1] mb-4">
+                    Sci-Fi Essentials <br>
+                    <span class="text-meshy-accent">Asset Collection</span>
+                </h1>
+                <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                    A curated set of 12 high-fidelity hard-surface models. Perfect for prototyping your next game or concept art scene.
+                </p>
 
-            <!-- 右侧: 邀请卡片 -->
-            <div id="content-col" class="flex flex-col justify-center items-center p-8 lg:p-12 overflow-y-auto custom-scrollbar">
-                
-                <!-- Logo -->
-                <div class="absolute top-6 left-6 lg:top-8 lg:left-8 flex items-center gap-2 text-meshy-accent font-bold text-xl tracking-tight">
-                    <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5 9.5 9.75 12 11zm0 2.5l-5-2.5-5 2.5 10 5 10-5-5-2.5-5 2.5z"/></svg>
-                    Meshy
-                </div>
-
-                <div class="w-full max-w-md space-y-8 animate-fade-in mt-8 lg:mt-0">
+                <!-- The Gift Card (Voucher Style) -->
+                <div class="bg-gradient-to-b from-[#1a1a1a] to-black border border-white/10 p-6 rounded-2xl gift-card-glow relative overflow-hidden group mb-6">
+                    <!-- Ticket Punch Holes (Visual) -->
+                    <div class="absolute top-1/2 -left-3 w-6 h-6 bg-[#080808] rounded-full"></div>
+                    <div class="absolute top-1/2 -right-3 w-6 h-6 bg-[#080808] rounded-full"></div>
                     
-                    <!-- Invited By Section -->
-                    <div class="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/5 backdrop-blur-sm">
-                        <div class="relative">
-                            <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Yi" class="w-14 h-14 rounded-xl bg-black border border-white/10">
-                            <div class="absolute -bottom-1 -right-1 bg-green-500 w-3.5 h-3.5 rounded-full border-2 border-[#1a1a1a]"></div>
-                        </div>
+                    <div class="flex justify-between items-start mb-6">
                         <div>
-                            <div class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-0.5">Curated by</div>
-                            <div class="text-white font-bold text-lg leading-tight">yixiangli</div>
-                            <div class="text-[11px] text-meshy-accent">Top Creator</div>
+                            <div class="text-xs text-gray-500 uppercase tracking-widest font-bold mb-1">Referral Gift</div>
+                            <div class="text-2xl font-bold text-white">Full Access</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm text-gray-500 line-through decoration-gray-600">$20/mo</div>
+                            <div class="text-xl font-bold text-meshy-accent">FREE</div>
                         </div>
                     </div>
 
-                    <!-- Marketing Copy -->
-                    <div class="text-center lg:text-left">
-                        <h1 class="text-3xl lg:text-4xl font-extrabold text-white leading-tight mb-3">
-                            Clone This Collection <br>
-                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-meshy-accent to-white">& Start Creating</span>
-                        </h1>
-                        <p class="text-gray-400 text-sm leading-relaxed">
-                            Sign up now to get full access to these models. Clone, edit, and export them for your own projects.
-                        </p>
-                    </div>
-
-                    <!-- Gift Card -->
-                    <div class="bg-gradient-to-b from-white/5 to-transparent p-6 rounded-2xl border border-white/5 relative overflow-hidden group">
-                        <!-- 装饰光晕 -->
-                        <div class="absolute -top-10 -right-10 w-40 h-40 bg-meshy-accent/10 blur-[60px] rounded-full pointer-events-none"></div>
-                        
-                        <div class="flex justify-between items-center mb-6 border-b border-white/5 pb-4 relative z-10">
-                            <div>
-                                <div class="text-white font-bold text-lg">Pro Plan Trial</div>
-                                <div class="text-meshy-accent text-xs font-mono font-bold">1 MONTH FREE</div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-gray-500 line-through text-xs mb-0.5">$20.00</div>
-                                <div class="text-white font-bold text-2xl leading-none">$0</div>
-                            </div>
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-center gap-3 text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-meshy-accent"></i> 12 Premium Assets Included
                         </div>
-                        
-                        <button class="w-full bg-[#ccff00] hover:bg-[#b3e600] text-black font-[800] text-lg py-3.5 rounded-xl transition-all shadow-[0_0_20px_rgba(204,255,0,0.2)] hover:shadow-[0_0_30px_rgba(204,255,0,0.4)] hover:-translate-y-1 flex items-center justify-center gap-2 group relative z-10">
-                            Register & Claim
-                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                        </button>
+                        <div class="flex items-center gap-3 text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-meshy-accent"></i> Commercial License
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-meshy-accent"></i> 1 Month Pro Plan Trial
+                        </div>
                     </div>
 
-                    <!-- Scroll Down Hint -->
-                    <div class="flex flex-col items-center justify-center pt-2 opacity-40 hover:opacity-80 transition cursor-pointer" onclick="document.getElementById('collection-grid-section').scrollIntoView({behavior: 'smooth'})">
-                        <span class="text-[10px] text-white mb-1 uppercase tracking-widest">View Assets</span>
-                        <i class="fa-solid fa-chevron-down text-white animate-bounce"></i>
-                    </div>
+                    <button class="w-full bg-meshy-accent hover:bg-meshy-accentHover text-black font-extrabold text-lg py-4 rounded-xl transition-transform active:scale-95 flex items-center justify-center gap-2 group/btn">
+                        Claim Collection
+                        <i class="fa-solid fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
+                    </button>
+                    <p class="text-center text-[10px] text-gray-600 mt-3">Valid for new accounts only • No card required</p>
+                </div>
 
+                <div class="text-center lg:text-left text-sm text-gray-500">
+                    <i class="fa-solid fa-users mr-2"></i> 2,340 creators claimed this pack
                 </div>
             </div>
-        </section>
 
-        <!-- 下半部分: Collection Grid -->
-        <section id="collection-grid-section">
-            <div class="max-w-7xl mx-auto px-4 lg:px-8">
-                <!-- [Changed] Grid Header -->
-                <div class="flex items-end justify-between mb-8 border-b border-white/10 pb-4">
-                    <div>
-                        <!-- 修改了这里：将 collection_assets 改为更易读的标题 -->
-                        <h3 class="text-2xl font-bold text-white flex items-center gap-3">
-                            Included Assets <span class="bg-white/10 text-xs px-2 py-0.5 rounded text-gray-400 font-normal align-middle">Public</span>
-                        </h3>
-                        <p class="text-sm text-gray-500 mt-1">12 items in this pack</p>
+            <!-- Right: Bento Grid Visuals (Order 1 on mobile to show visuals first?) 
+                 Actually, keeping Text first (Order 2) on mobile might be better for conversion if the image is too tall.
+                 Let's try Visual First on Mobile (Order 1) to hook them.
+            -->
+            <div class="order-1 lg:order-2 h-[50vh] lg:h-auto">
+                <div class="bento-grid">
+                    <!-- Main Feature -->
+                    <div class="bento-item main group cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=800&auto=format&fit=crop" loading="lazy">
+                        <div class="absolute top-3 left-3 bg-black/60 backdrop-blur px-2 py-1 rounded text-[10px] text-white font-bold border border-white/10">Hero Asset</div>
                     </div>
                     
-                    <div class="hidden sm:flex gap-2">
-                        <button class="text-gray-400 hover:text-white p-2"><i class="fa-solid fa-grip"></i></button>
-                        <button class="text-gray-400 hover:text-white p-2"><i class="fa-solid fa-list"></i></button>
+                    <!-- Side Item -->
+                    <div class="bento-item tall group cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1626263468007-a9e0cf83f1ac?q=80&w=600&auto=format&fit=crop" loading="lazy">
+                    </div>
+
+                    <!-- Small Item -->
+                    <div class="bento-item group cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1535378437327-10f228263370?q=80&w=400&auto=format&fit=crop" loading="lazy">
+                    </div>
+
+                    <!-- Bottom Wide -->
+                    <div class="bento-item wide group cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1633412802994-5c058f151b66?q=80&w=800&auto=format&fit=crop" loading="lazy">
+                        <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur px-2 py-1 rounded text-[10px] text-white flex items-center gap-1">
+                            <i class="fa-solid fa-plus"></i> 8 more
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- 响应式网格 -->
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-6">
-                    
-                    <!-- Item 1 -->
-                    <div class="model-card group cursor-pointer">
-                        <div class="model-card-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=400&auto=format&fit=crop" loading="lazy">
-                            <div class="absolute top-2 right-2 bg-black/60 backdrop-blur px-2 py-1 rounded text-[10px] text-white font-bold opacity-0 group-hover:opacity-100 transition translate-y-2 group-hover:translate-y-0">GLB</div>
-                        </div>
-                        <div class="p-3 bg-[#111]">
-                            <div class="text-xs text-gray-200 font-bold truncate group-hover:text-meshy-accent transition">Cyberpunk Helmet</div>
-                            <div class="flex justify-between items-center mt-2">
-                                <span class="text-[10px] text-gray-500">1.2k Polys</span>
-                                <i class="fa-regular fa-heart text-[10px] text-gray-600 group-hover:text-red-500 transition"></i>
-                            </div>
-                        </div>
-                    </div>
+        <!-- ================= Assets Preview (The Goods) ================= -->
+        <div class="border-t border-white/10 pt-12 mb-20">
+            <div class="flex items-center justify-between mb-8">
+                <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-box-open text-meshy-accent"></i> Included Assets
+                </h3>
+                <span class="text-sm text-gray-500">12 Items</span>
+            </div>
 
-                    <!-- Item 2 -->
-                    <div class="model-card group cursor-pointer">
-                        <div class="model-card-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1633412802994-5c058f151b66?q=80&w=400&auto=format&fit=crop" loading="lazy">
-                        </div>
-                        <div class="p-3 bg-[#111]">
-                            <div class="text-xs text-gray-200 font-bold truncate group-hover:text-meshy-accent transition">Mech Arm V2</div>
-                            <div class="flex justify-between items-center mt-2">
-                                <span class="text-[10px] text-gray-500">4.5k Polys</span>
-                                <i class="fa-regular fa-heart text-[10px] text-gray-600 group-hover:text-red-500 transition"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Item 3 -->
-                    <div class="model-card group cursor-pointer">
-                        <div class="model-card-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=400&auto=format&fit=crop" loading="lazy">
-                        </div>
-                        <div class="p-3 bg-[#111]">
-                            <div class="text-xs text-gray-200 font-bold truncate group-hover:text-meshy-accent transition">Energy Core</div>
-                            <div class="flex justify-between items-center mt-2">
-                                <span class="text-[10px] text-gray-500">800 Polys</span>
-                                <i class="fa-regular fa-heart text-[10px] text-gray-600 group-hover:text-red-500 transition"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Item 4 -->
-                    <div class="model-card group cursor-pointer">
-                        <div class="model-card-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1535378437327-10f228263370?q=80&w=400&auto=format&fit=crop" loading="lazy">
-                        </div>
-                        <div class="p-3 bg-[#111]">
-                            <div class="text-xs text-gray-200 font-bold truncate group-hover:text-meshy-accent transition">Space Drone</div>
-                            <div class="flex justify-between items-center mt-2">
-                                <span class="text-[10px] text-gray-500">2.1k Polys</span>
-                                <i class="fa-regular fa-heart text-[10px] text-gray-600 group-hover:text-red-500 transition"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Item 5 -->
-                    <div class="model-card group cursor-pointer">
-                        <div class="model-card-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1626263468007-a9e0cf83f1ac?q=80&w=400&auto=format&fit=crop" loading="lazy">
-                        </div>
-                        <div class="p-3 bg-[#111]">
-                            <div class="text-xs text-gray-200 font-bold truncate group-hover:text-meshy-accent transition">Alien Artifact</div>
-                            <div class="flex justify-between items-center mt-2">
-                                <span class="text-[10px] text-gray-500">3.3k Polys</span>
-                                <i class="fa-regular fa-heart text-[10px] text-gray-600 group-hover:text-red-500 transition"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- CTA Item -->
-                    <div class="model-card group cursor-pointer border-dashed border-white/20 hover:border-meshy-accent bg-transparent flex flex-col items-center justify-center min-h-[180px] transition-colors">
-                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center mb-2 group-hover:bg-meshy-accent group-hover:text-black transition">
-                            <i class="fa-solid fa-plus"></i>
-                        </div>
-                        <div class="text-xs text-gray-400 group-hover:text-white">View All 12 Items</div>
-                    </div>
-
-                </div>
+            <!-- 2 Rows Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 
-                <div class="mt-16 border-t border-white/10 pt-8 text-center">
-                    <p class="text-gray-500 text-sm mb-4">Want to create collections like this?</p>
-                    <button class="text-sm text-white hover:text-meshy-accent transition border-b border-gray-600 hover:border-meshy-accent pb-0.5">Start Creating for Free</button>
+                <!-- Asset 1 -->
+                <div class="asset-card group cursor-pointer">
+                    <div class="aspect-square bg-[#111] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-3">
+                        <div class="text-xs font-bold text-white truncate">Mecha Helmet</div>
+                        <div class="text-[10px] text-gray-500 mt-1">GLB • 12MB</div>
+                    </div>
                 </div>
+
+                <!-- Asset 2 -->
+                <div class="asset-card group cursor-pointer">
+                    <div class="aspect-square bg-[#111] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1633412802994-5c058f151b66?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-3">
+                        <div class="text-xs font-bold text-white truncate">Cyber Arm</div>
+                        <div class="text-[10px] text-gray-500 mt-1">FBX • 8MB</div>
+                    </div>
+                </div>
+
+                <!-- Asset 3 -->
+                <div class="asset-card group cursor-pointer">
+                    <div class="aspect-square bg-[#111] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-3">
+                        <div class="text-xs font-bold text-white truncate">Power Cell</div>
+                        <div class="text-[10px] text-gray-500 mt-1">GLB • 4MB</div>
+                    </div>
+                </div>
+
+                <!-- Asset 4 -->
+                <div class="asset-card group cursor-pointer">
+                    <div class="aspect-square bg-[#111] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1535378437327-10f228263370?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-3">
+                        <div class="text-xs font-bold text-white truncate">Recon Drone</div>
+                        <div class="text-[10px] text-gray-500 mt-1">OBJ • 15MB</div>
+                    </div>
+                </div>
+
+                <!-- Asset 5 -->
+                <div class="asset-card group cursor-pointer">
+                    <div class="aspect-square bg-[#111] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1626263468007-a9e0cf83f1ac?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-3">
+                        <div class="text-xs font-bold text-white truncate">Alien Artifact</div>
+                        <div class="text-[10px] text-gray-500 mt-1">GLB • 22MB</div>
+                    </div>
+                </div>
+
+                <!-- Asset 6 -->
+                <div class="asset-card group cursor-pointer">
+                    <div class="aspect-square bg-[#111] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-3">
+                        <div class="text-xs font-bold text-white truncate">Tech Panel</div>
+                        <div class="text-[10px] text-gray-500 mt-1">GLB • 2MB</div>
+                    </div>
+                </div>
+
+                <!-- Asset 7 -->
+                <div class="asset-card group cursor-pointer">
+                    <div class="aspect-square bg-[#111] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-3">
+                        <div class="text-xs font-bold text-white truncate">Server Rack</div>
+                        <div class="text-[10px] text-gray-500 mt-1">GLB • 6MB</div>
+                    </div>
+                </div>
+
+                <!-- Asset 8 -->
+                <div class="asset-card group cursor-pointer">
+                    <div class="aspect-square bg-[#111] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1592478411213-61535fdd861d?q=80&w=300&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-3">
+                        <div class="text-xs font-bold text-white truncate">Bot Head</div>
+                        <div class="text-[10px] text-gray-500 mt-1">GLB • 9MB</div>
+                    </div>
+                </div>
+
+                <!-- CTA Card (Fill the grid) -->
+                <div class="col-span-2 md:col-span-1 asset-card border-dashed bg-transparent border-white/20 flex flex-col items-center justify-center p-4 hover:border-meshy-accent group cursor-pointer">
+                    <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mb-2 group-hover:bg-meshy-accent group-hover:text-black transition">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <span class="text-xs text-gray-400 group-hover:text-white text-center">View 4 more items</span>
+                </div>
+
             </div>
-        </section>
 
-    </div>
+            <!-- Bottom CTA -->
+            <div class="mt-12 flex justify-center">
+                <button class="bg-white hover:bg-gray-200 text-black font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:-translate-y-1">
+                    Start Creating for Free
+                </button>
+            </div>
+        </div>
 
-    <script>
-        // ----------------- Carousel Logic (Vanilla JS) -----------------
-        document.addEventListener('DOMContentLoaded', () => {
-            const slides = document.querySelectorAll('.carousel-slide');
-            const indicators = document.querySelectorAll('.indicator');
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            
-            let currentSlide = 0;
-            const intervalTime = 4000;
-            let slideInterval;
+    </main>
 
-            function showSlide(index) {
-                // Remove active class from current
-                slides[currentSlide].classList.remove('active');
-                indicators[currentSlide].classList.remove('opacity-100');
-                indicators[currentSlide].classList.add('opacity-30');
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-8 text-center text-[10px] text-gray-600">
+        <p>&copy; 2024 Meshy AI. All rights reserved.</p>
+    </footer>
 
-                // Update index
-                currentSlide = index;
-
-                // Add active class to new
-                slides[currentSlide].classList.add('active');
-                indicators[currentSlide].classList.remove('opacity-30');
-                indicators[currentSlide].classList.add('opacity-100');
-            }
-
-            function nextSlide() {
-                let newIndex = (currentSlide + 1) % slides.length;
-                showSlide(newIndex);
-            }
-
-            function prevSlide() {
-                let newIndex = (currentSlide - 1 + slides.length) % slides.length;
-                showSlide(newIndex);
-            }
-
-            function resetTimer() {
-                clearInterval(slideInterval);
-                slideInterval = setInterval(nextSlide, intervalTime);
-            }
-
-            // Event Listeners
-            nextBtn.addEventListener('click', () => {
-                nextSlide();
-                resetTimer();
-            });
-
-            prevBtn.addEventListener('click', () => {
-                prevSlide();
-                resetTimer();
-            });
-
-            // Start Autoplay
-            slideInterval = setInterval(nextSlide, intervalTime);
-        });
-    </script>
 </body>
 </html>
